@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>base</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- javascript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+      <!-- google api stylesheet -->
+      <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css?family=Tangerine">
+
+
+         <link rel="stylesheet" href="{% static 'css/master.css'%}">
+         <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Piedra&display=swap" rel="stylesheet">
+
+  </head>
+  <br><br><br>
+  <div class='ripple-background'>
+    <div class='circle xxlarge shade1'></div>
+    <div class='circle xlarge shade2'></div>
+    <div class='circle large shade3'></div>
+    <div class='circle mediun shade4'></div>
+    <div class='circle small shade5'></div>
+  </div>
+
+
+
+  <body class="loader" fixed-top >
+
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top techfront custom-navbar" fixed-top >
+
+        <div class="container">
+          <a class="navbar-brand mynav" href="{% url 'home' %}">Star Social</a>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+              <li class="btn btn-light"><a href="{% url 'posts:create' %}">Post .</a></li>
+              <li class="btn btn-danger"><a href="{% url 'groups:all' %}">Groups .</a></li>
+              <li class="btn btn-warning"><a href="{% url 'groups:create' %}">Create Groups .</a></li>
+              <li class="btn btn-secondary"><a href="{% url 'accounts:logout' %}">Log Out .</a></li>
+            {% else %}
+              <li class="btn btn-light"><a href="{% url 'groups:all'%}">Groups  .</a></li>
+              <li class="btn btn-secondary"><a href="{% url 'accounts:login' %}"><span class="tab">Log In  .</span></a></li>
+              <li class="btn btn-warning"><a href="{% url 'accounts:signup' %}">Sign Up  .</a></li>
+            {% endif %}
+          </ul>
+        </div>
+    </nav>
+
+
+    <div class="container mycontent">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+
+</body>
+
+  <!-- <script src="{% static "social/js/master.js"%}" type="text/javascript" ></script> -->
+
+</html>

@@ -1,0 +1,21 @@
+{% extends "posts/post_base.html" %}
+{% load bootstrap4 %}
+
+{% block post_content %}
+<center><h1>................................Create A New Post.......................................</h1>
+
+<form id="postForm" action="{% url 'posts:create' %}" method="post">
+{% csrf_token %}
+{% bootstrap_form form %}
+<input type="submit" value="Post" class="btn btn-primary btn-large">
+</form></center>
+<style media="screen">
+  h1{
+    color:green;
+  }
+  body{
+    background-color:black;
+  }
+  
+</style>
+{% endblock %}

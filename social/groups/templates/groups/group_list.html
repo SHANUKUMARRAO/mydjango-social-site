@@ -1,0 +1,59 @@
+{% extends 'groups/group_base.html' %}
+{% block pregroup %}
+  <nav class="navbar bg-secondary navbar-expand-xl  sticky-top">
+<div class="col-md-4">
+  <div class="content">
+    {% if user.is_authenticated %}
+      <h2>WELCOME BACK!!!
+        <a href="{% url "posts:for_user" username=user.username %}">@{{user.username}}
+        </a>
+      </h2>
+
+    {% endif %}
+
+    <h2>GROUP</h2>
+    <p>WELCOME To Group Page!  Select a Group with a shared interest!!!</p>
+  </div>
+
+  {% if user.is_authenticated %}
+    <a href="{% url 'groups:create' %}" class="btn btn-md btn-fill btn-warning">Create A New Group</a>
+
+  {% endif %}
+</div>
+</nav>
+{% endblock %}
+
+{% block group_content %}
+<a>
+<div class="col-md-8">
+  <div class="list-group">
+    {% for group in object_list %}
+    <a class="list-group-item" href="{% url 'groups:single' slug=group.slug %}">
+      <h3 class="title list-group-item-heading">{{group.name}}</h3>
+      <div class="list-group-items-text container-fluid">
+        {{group.description_html|safe}}
+        <div class="row">
+          <div class="col-md-4">
+            <span class="badge">{{groups.members.count}}</span>
+            post{{groups.members.count|pluralize}}
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+</a>
+<style media="screen">
+  h2{
+    color:green;
+  }
+h3,p{
+  color:orange;
+}
+body{
+  background-color:black;
+}
+
+</style>
+{% endblock %}
